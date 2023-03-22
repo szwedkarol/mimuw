@@ -1,0 +1,3 @@
+/home/students/mat/k/ks430171/CLionProjects/naszyjniki/cmake-build-debug/CMakeFiles/naszyjniki.dir
+/home/students/mat/k/ks430171/CLionProjects/naszyjniki/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/students/mat/k/ks430171/CLionProjects/naszyjniki/cmake-build-debug/CMakeFiles/rebuild_cache.dir
