@@ -1,0 +1,14 @@
+--Zad. 2
+--Karol Szwed
+--430171
+--gr. 7
+
+--ROZWIAZANIE
+SELECT T.eliksir FROM (SELECT eliksir, SUM(cena*ilosc) AS koszt FROM przepis LEFT JOIN eliksir ON nazwa = przepis.skladnik
+GROUP BY eliksir) T LEFT JOIN eliksir ON T.eliksir = eliksir.nazwa
+WHERE cena >= 1.5 * koszt;
+
+
+--POBOCZNE ZADANIE - KOSZT WYTWORZENIA Z BEZPOSREDNICH SKLADNIKOW
+SELECT eliksir, SUM(cena*ilosc) AS koszt FROM przepis LEFT JOIN eliksir ON nazwa = przepis.skladnik
+GROUP BY eliksir;

@@ -1,0 +1,5 @@
+SELECT ename,(SELECT loc FROM dept WHERE deptno =
+(SELECT deptno FROM emp c WHERE
+c.deptno = dept.deptno AND c.empno = a.mgr)) BOSSLOC FROM emp a;
+
+--Karol Szwed, zad. 2 BAD 17.10.2022 r.

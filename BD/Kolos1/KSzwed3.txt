@@ -1,0 +1,13 @@
+--Zad. 3
+--Karol Szwed
+--430171
+--gr. 7
+
+--ROZWIAZANIE
+SELECT nazwa, NVL(MAX(ileS), 0) AS ile FROM eliksir LEFT JOIN
+(SELECT przepis.eliksir, skladnik, (SELECT COUNT(*) FROM przepis A WHERE A.eliksir = przepis.eliksir) AS ileS FROM przepis) liczbaS ON nazwa = skladnik
+GROUP BY nazwa;
+
+
+--POBOCZNE - ILE SKLADNIKOW W SUMIE W PRZEPISIE
+SELECT przepis.eliksir, skladnik, (SELECT COUNT(*) FROM przepis A WHERE A.eliksir = przepis.eliksir) AS ileS FROM przepis;

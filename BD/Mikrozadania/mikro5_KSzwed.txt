@@ -1,0 +1,19 @@
+--SQL - Mikrozadanie 5
+--Karol Szwed
+
+CREATE OR REPLACE TRIGGER sprRozmiarDept
+AFTER INSERT OR UPDATE ON emp
+DECLARE
+	licznik1 NUMBER;
+	licznik2 NUMBER;
+BEGIN
+	SELECT MAX(COUNT(*)) INTO licznik1 FROM emp GROUP BY deptno;
+	SELECT MIN(COUNT(empno)) INTO licznik2 FROM dept LEFT JOIN emp ON dept.deptno = emp.deptno GROUP BY dept.deptno;
+	IF licznik1 > 10 THEN
+		raise_application_error(-20000, 'Dept nie może być większy od 10');
+	END IF;
+	IF licznik2 = 0 THEN
+		raise_application_error(-20001, 'Dept nie może być pusty');
+	END IF;
+END;
+/

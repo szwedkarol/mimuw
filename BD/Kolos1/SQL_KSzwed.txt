@@ -1,0 +1,88 @@
+Karol Szwed
+Bazy Danych - kolos z SQL 2022 r.
+
+--Zad. 1
+--Karol Szwed
+--430171
+--gr. 7
+
+SELECT nazwa, NVL(ILE, 0) AS liczba FROM eliksir LEFT JOIN (SELECT skladnik, COUNT(*) as ILE FROM przepis GROUP BY skladnik) ON nazwa = skladnik
+WHERE cena >= 10
+ORDER BY liczba DESC;
+
+
+--Zad. 2
+--Karol Szwed
+--430171
+--gr. 7
+
+--ROZWIAZANIE
+SELECT T.eliksir FROM (SELECT eliksir, SUM(cena*ilosc) AS koszt FROM przepis LEFT JOIN eliksir ON nazwa = przepis.skladnik
+GROUP BY eliksir) T LEFT JOIN eliksir ON T.eliksir = eliksir.nazwa
+WHERE cena >= 1.5 * koszt;
+
+
+--POBOCZNE ZADANIE - KOSZT WYTWORZENIA Z BEZPOSREDNICH SKLADNIKOW
+SELECT eliksir, SUM(cena*ilosc) AS koszt FROM przepis LEFT JOIN eliksir ON nazwa = przepis.skladnik
+GROUP BY eliksir;
+
+
+--Zad. 3
+--Karol Szwed
+--430171
+--gr. 7
+
+--ROZWIAZANIE
+SELECT nazwa, NVL(MAX(ileS), 0) AS ile FROM eliksir LEFT JOIN
+(SELECT przepis.eliksir, skladnik, (SELECT COUNT(*) FROM przepis A WHERE A.eliksir = przepis.eliksir) AS ileS FROM przepis) liczbaS ON nazwa = skladnik
+GROUP BY nazwa;
+
+
+--POBOCZNE - ILE SKLADNIKOW W SUMIE W PRZEPISIE
+SELECT przepis.eliksir, skladnik, (SELECT COUNT(*) FROM przepis A WHERE A.eliksir = przepis.eliksir) AS ileS FROM przepis;
+
+
+--Zad. 5
+--Karol Szwed
+--430171
+--gr. 7
+
+--ROZWIAZANIE
+WITH tmp (id, eliksir, skladnik, cena) AS (
+	SELECT PR.eliksir, PR.eliksir, PR.skladnik, EL.cena * PR.ilosc
+	FROM przepis PR LEFT JOIN eliksir EL ON PR.skladnik = EL.nazwa
+	UNION ALL
+	SELECT id, p.eliksir, p.skladnik, (NVL((SELECT MAX(cena) FROM eliksir E WHERE p.skladnik = E.nazwa), 0)) * p.ilosc AS cena
+	FROM przepis p, tmp
+	WHERE p.eliksir = tmp.skladnik
+)
+SELECT id AS nazwa FROM
+(SELECT id, MAX(cena) AS koszt FROM tmp
+WHERE skladnik NOT IN (SELECT DISTINCT eliksir FROM przepis)
+GROUP BY id)
+ORDER BY koszt DESC;
+
+--Eliksiry niebazowe
+SELECT DISTINCT eliksir FROM przepis;
+
+--Eliksiry bazowe
+SELECT nazwa FROM eliksir WHERE nazwa NOT IN (SELECT DISTINCT eliksir FROM przepis);
+
+
+--Zad. 4
+--Karol Szwed
+--430171
+--gr. 7
+
+--ROZWIAZANIE
+SELECT DISTINCT p.eliksir
+FROM przepis p
+WHERE skladnik NOT IN (SELECT eliksir FROM przepis WHERE skladnik IN (SELECT eliksir FROM przepis));
+
+
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+SELECT empno AS ID FROM emp WHERE empno IN (SELECT mgr FROM emp) ORDER BY ID DESC;
+
+--Karol Szwed, 10.10.2022 r.

@@ -1,0 +1,9 @@
+--Zad. 4
+--Karol Szwed
+--430171
+--gr. 7
+
+--ROZWIAZANIE
+SELECT DISTINCT p.eliksir
+FROM przepis p
+WHERE skladnik NOT IN (SELECT eliksir FROM przepis WHERE skladnik IN (SELECT eliksir FROM przepis));

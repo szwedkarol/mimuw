@@ -1,0 +1,8 @@
+--Zad. 1
+--Karol Szwed
+--430171
+--gr. 7
+
+SELECT nazwa, NVL(ILE, 0) AS liczba FROM eliksir LEFT JOIN (SELECT skladnik, COUNT(*) as ILE FROM przepis GROUP BY skladnik) ON nazwa = skladnik
+WHERE cena >= 10
+ORDER BY liczba DESC;

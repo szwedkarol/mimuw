@@ -1,0 +1,5 @@
+SELECT job, MAX(sal) FROM emp WHERE job IN (SELECT job FROM emp
+WHERE sal >= 1000 GROUP BY job HAVING COUNT(*) >= 3)
+GROUP BY job;
+
+-- Karol Szwed, 24.10.2022 r.
