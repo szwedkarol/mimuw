@@ -1,3 +1,0 @@
-C:/Users/user/CLionProjects/kapitan/cmake-build-debug/CMakeFiles/kapitan.dir
-C:/Users/user/CLionProjects/kapitan/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/user/CLionProjects/kapitan/cmake-build-debug/CMakeFiles/rebuild_cache.dir
