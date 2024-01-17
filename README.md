@@ -17,4 +17,5 @@ This course involves the design and analysis of algorithms. It provides an overv
 ## PO (eng. Object-Oriented Programming, pol. Programowanie Obiektowe)
 The course covers basic concepts and issues in object-oriented programming: classes, objects, encapsulation, inheritance, polymorphism, and the fundamentals of object-oriented design, along with formalisms for documenting and writing object-oriented projects and programs.
 
+---
 Each course has contributed significantly to my academic and professional development in the field of computer science.
